@@ -10,6 +10,11 @@ export const addTables = (Payload) => ({
   type: 'ADD_TABLE',
   payload: Payload,
 });
+export const GetExtension = (Payload) => ({
+  type: 'GET_Extension',
+  payload: Payload,
+});
+
 // export const LogoutUser = () => ({
 //   type: 'LOGOUT_USER',
 //   payload: api.LogoutUser(),

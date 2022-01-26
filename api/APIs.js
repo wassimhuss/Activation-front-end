@@ -21,11 +21,36 @@ export async function Get_Table_By_OWNER_ID(id) {
          let c1Tables =[];
          let c2Tables =[];
         result.forEach(item => { 
-          item.DEPO == 'c1' ? 
+          item.DEPO_ID == 1 ? 
           c1Tables.push(item) :  c2Tables.push(item)
            
         });
          return {Tables : result, c1Tables: c1Tables, c2Tables: c2Tables }
+        
+  }catch(error){
+    console.log(
+      'my errorrrrr +   ' + error
+    );
+  }
+  
+} 
+export async function Get_DEPO_By_OWNER_ID(id) {
+
+  try{
+    let oParams_Get_Table_By_OWNER_ID = new P.Params_Get_Table_By_OWNER_ID();
+    oParams_Get_Table_By_OWNER_ID.OWNER_ID = id;
+    //console.error(oParams_Get_Table_By_OWNER_ID);
+    let result = await myProxy.Get_DEPO_By_OWNER_ID(
+      oParams_Get_Table_By_OWNER_ID
+      )
+        // return {Tables :result}
+         let c1Extension =[];
+         let c2Extension =[];
+        result?.My_Result.forEach(item => { 
+          item.DEPO_ID == 1 ? 
+          c1Extension.push(item) : c2Extension.push(item)
+        });
+         return {c1Extension: c1Extension, c2Extension: c2Extension}
         
   }catch(error){
     console.log(
@@ -52,28 +77,21 @@ export async function Get_Product_By_Search(NAME) {
         alert('please check your internet connection')
       }
 } 
-export async function  Get_Adress_By_USER_ID(id) {
-  let oParams_Get_Adress_By_USER_ID = new P.Params_Get_Adress_By_USER_ID();
-  oParams_Get_Adress_By_USER_ID.USER_ID = id;
-  let result = await myProxy.Get_Adress_By_USER_ID(oParams_Get_Adress_By_USER_ID)
-     if (result?.My_Result) {
-            return {userAdress : result.My_Result, error: result.ExceptionMsg}
-      }
-      else{
-       alert('please try again')
-      }
-}
 export async function  Edit_Table(data) {
   //console.warn(JSON.stringify(data));
-  let result = await myProxy.Edit_Table(data);
-     if (result.ExceptionMsg != null) {
+  let result = await myProxy.Edit_Tables(data);
+     if (!result.ExceptionMsg) {
        //alert(JSON.stringify(result))
-       return {Tables: result.My_Table }
+       let c1Tables =[];
+       let c2Tables =[];
+       result?.My_Result.forEach(item => { 
+        item.DEPO_ID == 1 ? 
+        c1Tables.push(item) :  c2Tables.push(item)
+      });
+       return {Tables : result.My_Result, c1Tables: c1Tables, c2Tables: c2Tables }
       }
       else{
-        alert('not done')
-       // return {error: true }
-       // alert("please try again")
+        alert(' not done')
       }
 }
 export async function  CHECKNET(id) {

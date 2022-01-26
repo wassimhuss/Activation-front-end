@@ -10,7 +10,7 @@ import BouncyCheckboxGroup, {
   } from "react-native-bouncy-checkbox-group";
 import { useDispatch } from 'react-redux';
 //import { TextInput } from 'react-native-paper';
-const AddTable = () => {
+const AddTable = ({navigation}) => {
   const dispatch = useDispatch();
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
@@ -20,13 +20,16 @@ const AddTable = () => {
     var table = new Object();
     table.TABLE_ID= -1 ; 
     table.TABLE_NAME= text1; 
-    table.DEPO= depo; 
+    table.DEPO_ID= depo; 
     table.NB_OF_TYPE_A= text2; 
     table.NB_OF_TYPE_c= text3; 
    // console.warn(JSON.stringify(uData));
    result = await  functions.Edit_Table(table)
    dispatch(actions.addTables(result))
-  // alert(JSON.stringify(result.success))
+   if(result){
+    alert(`table ${text1} has been added`)
+    navigation.replace('ALLapp')
+   }
   // else{
   //   navigation.navigate('MyTabs');
   // }
@@ -34,7 +37,7 @@ const AddTable = () => {
    let staticData =  [
         {
           id: 0,
-          text:'c1',
+          text:1,
           size:40,
           fillColor:"black",
           unfillColor:"grey",
@@ -44,7 +47,7 @@ const AddTable = () => {
         },
         {
           id: 1,
-          text:"c2",
+          text:2,
           size:40,
           fillColor:"black",
           unfillColor:"grey",

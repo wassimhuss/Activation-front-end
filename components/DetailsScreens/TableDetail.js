@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, View ,TouchableOpacity} from 'react-native'
 import BouncyCheckboxGroup from 'react-native-bouncy-checkbox-group';
 import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/bruce';
-import { useSelector } from 'react-redux';
-const TableDetail = () => {
+import { useSelector,useDispatch } from 'react-redux';
+import * as functions from '../../api/APIs';
+import * as actions from '../../store/actions/Actions';
+const TableDetail = ({route,navigation}) => {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.auth.userData)
+  const items = route.params.item.item
+  const [text1, setText1] = useState(items.TABLE_NAME);
+  const [text2, setText2] = useState(items.NB_OF_TYPE_C);
+  const [text3, setText3] = useState(items.NB_OF_TYPE_A);
+  const [depo, setdepo] = useState(items.DEPO);
+  //console.log("my items "+JSON.stringify(items));
+  const EditUserHandler = async()=> {
+    var table = new Object();
+    table.TABLE_ID= items.TABLE_ID ; 
+    table.TABLE_NAME= text1; 
+    table.DEPO= depo; 
+    table.NB_OF_TYPE_A= text2; 
+    table.NB_OF_TYPE_c= text3; 
+   // console.warn(JSON.stringify(uData));
+   result = await  functions.Edit_Table(table)
+   dispatch(actions.addTables(result))
+   if(result){
+    alert(`table ${text1} has been edited`)
+    navigation.goBack()
+   }
+  // else{
+  //   navigation.navigate('MyTabs');
+  // }
+  }
     let staticData =  [
         {
           id: 0,
@@ -37,21 +64,21 @@ const TableDetail = () => {
              <TextInput
              
              placeholderTextColor={'white'}
-             placeholder='TableName'
+             placeholder={items.TABLE_NAME}
               style={styles.input}
               onChangeText={text => setText1(text)}
      />
       <TextInput
       keyboardType='number-pad'
              placeholderTextColor={'white'}
-             placeholder='number of type C phones'
+             placeholder={'number of type C phones : ' + items.NB_OF_TYPE_C }
               style={styles.input}
               onChangeText={text => setText2(text)}
      />
       <TextInput
       keyboardType='number-pad'
              placeholderTextColor={'white'}
-             placeholder='number of type A phones'
+             placeholder={'number of type A phones : ' + items.NB_OF_TYPE_A }
               style={styles.input}
               onChangeText={text => setText3(text)}
      />
@@ -60,7 +87,7 @@ const TableDetail = () => {
      size={40}
    data={staticData}
    onChange={(selectedItem) => {
-     console.log("SelectedItem: ", JSON.stringify(selectedItem.text));
+    setdepo(selectedItem.text);
    }}
  />
  <AwesomeButtonRick
@@ -72,7 +99,7 @@ const TableDetail = () => {
       onPress={(next) => { 
           
          setTimeout(() => {
-           next(() => {});
+           next(() => {EditUserHandler()});
          }, 1000);
        }}
      type="primary">Edit table</AwesomeButtonRick>

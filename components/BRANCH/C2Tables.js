@@ -17,11 +17,13 @@ const C2Tables = ({navigation}) => {
        renderItem={
            ({item}) => {
            return (
-             <Cards3 Title ={item.title} type={item.iconType} name={item.iconName}  navtitle={item.navigation} navigateTo={navigate}/>
+             <Cards3 Title ={item.TABLE_NAME} type={item.iconType} name={item.iconName}  navtitle={item.navigation} navigateTo={navigate} cNb={item.NB_OF_TYPE_C}
+             aNb={item.NB_OF_TYPE_A}
+             />
            )
          }
        }
-       keyExtractor={(item) => item.id}
+       keyExtractor={(item) => item.TABLE_ID}
        //horizontal
        numColumns={2}
        //showsHorizontalScrollIndicator={false}

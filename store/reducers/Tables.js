@@ -11,10 +11,7 @@ const INITIAL_STATE = {
         return {...state, ...action.payload};
         case 'ADD_TABLE':
          // console.warn(action.payload)
-        return {...state,
-                ...state.Tables,
-          ...[{...action.payload}] }
-        
+         return {...state, ...action.payload};
         ;
       default:
         return state;

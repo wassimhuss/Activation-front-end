@@ -20,7 +20,7 @@ const Allapp = ({navigation}) => {
       username = await AsyncStorage.getItem('username');
       pin = await AsyncStorage.getItem('pin');
       auth(1,username,pin)
-      console.warn(username + "  " + pin );
+     // console.warn(username + "  " + pin );
     } catch (e) {
     }
   };
@@ -55,7 +55,7 @@ const Allapp = ({navigation}) => {
                   )
                 }
               }
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.TABLE_ID}
               //horizontal
               numColumns={2}
               //showsHorizontalScrollIndicator={false}

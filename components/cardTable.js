@@ -4,20 +4,20 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 FontAwesome.loadFont();
 SimpleLineIcons.loadFont();
-const cardTable = ({navigateTo}) => {
+const cardTable = ({navigateTo,Title,cNb,aNb,item}) => {
     return (
-        <TouchableOpacity onPress={()=>navigateTo('TableDetail')}  style={{ flex:1}}>
+        <TouchableOpacity onPress={()=>navigateTo('TableDetail',{item})}  style={{ flex:1}}>
         <View style={styles.Container}>
             <View style={{flex:1 , flexDirection:"row"}}>
                 <View style={{flex:1 , justifyContent:"space-evenly",flexDirection:'column'}}>
                 <Text style={styles.Title} >
-               Table Name
+               {"  "+Title}
             </Text>
             <Text style={styles.Title} >
-                {' '}nb c : 50
+                {' '}nb c : {cNb}
             </Text>
             <Text style={styles.Title} >
-                {' '}nb a : 100
+                {' '}nb a : {aNb}
             </Text>
                 </View>
                 <View style={{justifyContent:"flex-end",marginBottom:"10%",marginRight:"5%"}}>

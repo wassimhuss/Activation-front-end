@@ -42,8 +42,17 @@ export class Proxy {
       });
       return result.My_Result;
   }
-  async Edit_Table(i_Table) {
-      this.url = this.APIBaseUrl + '/Edit_Table?Ticket=' + (this.TicketMode === 'url' ? this.Ticket : '');
+  async Get_DEPO_By_OWNER_ID(i_Params_Get_Table_By_OWNER_ID) {
+    this.url = this.APIBaseUrl + '/Get_Depo_By_OWNER_ID?Ticket=' + (this.TicketMode === 'url' ? this.Ticket : '');
+    console.log(this.url)
+    const result = await this.apiPost(this.url, i_Params_Get_Table_By_OWNER_ID).then(async (resp) => {
+        return resp;
+    });
+    return result;
+}
+  
+  async Edit_Tables(i_Table) {
+      this.url = this.APIBaseUrl + '/Edit_Tables?Ticket=' + (this.TicketMode === 'url' ? this.Ticket : '');
       const result = await this.apiPost(this.url, i_Table).then(async (resp) => {
           return resp;
       });

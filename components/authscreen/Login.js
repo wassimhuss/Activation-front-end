@@ -22,6 +22,9 @@ const Login = ({navigation}) => {
     const allTablesHandler = TABLES =>{
         dispatch(actions.getTables(TABLES));
       }
+      const ExtensionHandler = Extensions =>{
+        dispatch(actions.GetExtension(Extensions));
+      }
       const ActionAuth = data =>{
         alert( "login successful")
         dispatch(actions.loginUser(data));
@@ -32,6 +35,12 @@ const Login = ({navigation}) => {
         result = await functions.Get_Table_By_OWNER_ID(ownerID);
         if (result !== null && result !== undefined) {
           allTablesHandler(result);
+        }
+      }
+      async function getExtensions(ownerID){
+        result = await functions.Get_DEPO_By_OWNER_ID(ownerID);
+        if (result !== null && result !== undefined) {
+          ExtensionHandler(result);
         }
       }
       async function auth(ownerID,username,password){
@@ -49,6 +58,7 @@ const Login = ({navigation}) => {
     useEffect(() => {
           //fetchData(1);
           getTables(1)
+          getExtensions(1)
     }, []);
     
     return (
