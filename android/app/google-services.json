@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1074218006754",
+    "project_id": "activation-5528b",
+    "storage_bucket": "activation-5528b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074218006754:android:dc1d6a18cd5788748c06bb",
+        "android_client_info": {
+          "package_name": "com.wassim.activation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074218006754-rsijulvk1necgpctbmlob0mb1ordorgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhYdiidgZeJYsxqkD2cPKa7Mum3nPdgFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074218006754-rsijulvk1necgpctbmlob0mb1ordorgh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
